@@ -1,0 +1,82 @@
+/* 4 - externo  */
+body{
+    padding-bottom: 500px;
+}
+
+h3{
+  color: green;
+}
+
+p{
+  color: blueviolet;
+}
+
+
+ul{
+   border: 1px solid red;
+}
+
+li{
+  color: blue;
+}
+
+
+/*  algum comentário */
+/* mais um comenário */
+/* terceiro comentário*/
+
+/* classes */
+.paragraph{
+  background-color: rgb(7, 7, 7);
+  color:rgb(84, 211, 211)
+  padding 5px;
+}
+
+/* ids */
+exclusive-title{
+  background: rgb(160, 177, 11);
+  color: rgb(160, 9, 9);
+  padding: 10px;
+}
+
+/* multiplas regras */
+h2{
+  border-bottom: 2px solid red;
+}
+
+.titulo{
+  border-bottom: 3px solid blue;
+}
+
+#algum-titulo{
+  border-bottom: 4px solid green;
+}
+
+/* nome de cores */
+.color-name{
+  color:#ffd90073
+}
+
+/* Hex */
+.hex{
+    color: #55a398;
+}
+
+/* Aprofudando em hex*/
+.simple-hex{
+  color: #3365;
+}
+
+/* RGB*/
+.rgb{
+  color: rgb(100, 40, 50)
+}
+
+.mixed-rgb{
+  color: rgb(3, 30, 50);
+}
+
+/*RGBA*/
+.rgba{
+  color: rgba(150, 120, 1.30);
+}

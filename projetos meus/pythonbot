@@ -1,0 +1,53 @@
+import requests
+from telegram.ext import Updater, CommandHandler
+
+# Função para lidar com o comando /clima
+def weather(update, context):
+    # Chave de API do OpenWeatherMap
+    api_key = 'SUA_CHAVE_DE_API_AQUI'
+
+    # Obtendo a cidade fornecida como argumento após o comando /clima
+    if len(context.args) == 0:
+        update.message.reply_text('Por favor, forneça o nome da cidade. Por exemplo: /clima Paris')
+        return
+
+    city = ' '.join(context.args)
+
+    # URL da API do OpenWeatherMap para informações climáticas atuais
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
+
+    # Fazendo a requisição à API do OpenWeatherMap
+    response = requests.get(url)
+    weather_data = response.json()
+
+    # Extraindo informações do JSON retornado
+    if weather_data['cod'] == 200:
+        weather_description = weather_data['weather'][0]['description']
+        temperature = weather_data['main']['temp']
+        humidity = weather_data['main']['humidity']
+
+        message = f'O clima em {city}:\nDescrição: {weather_description}\nTemperatura: {temperature}°C\nUmidade: {humidity}%'
+    else:
+        message = 'Desculpe, não foi possível obter informações sobre o clima para essa cidade.'
+
+    # Enviando a mensagem de resposta ao usuário no Telegram
+    update.message.reply_text(message)
+
+def main():
+    # Inicialização do bot com o token fornecido pelo BotFather
+    updater = Updater("SEU_TOKEN_AQUI", use_context=True)
+
+    # Obtenção do dispatcher para registrar handlers
+    dp = updater.dispatcher
+
+    # Handler para o comando /clima
+    dp.add_handler(CommandHandler("clima", weather))
+
+    # Inicia o bot
+    updater.start_polling()
+
+    # Mantém o bot ativo até que Ctrl+C seja pressionado
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
